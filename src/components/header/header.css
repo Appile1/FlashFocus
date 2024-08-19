@@ -1,0 +1,102 @@
+.intro-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #1b1b2f;
+  color: white;
+  animation: fadeIn 2s ease-in;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 20px;
+  background-color: #162447;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.logo img {
+  width: 100px;
+  cursor: pointer;
+  animation: bounce 2s infinite;
+}
+
+.buttons .btn.auth-btn {
+  margin: 0 10px;
+  padding: 10px 20px;
+  background-color: #e43f5a;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.buttons .btn.auth-btn:hover {
+  transform: scale(1.1);
+}
+
+.anime-intro {
+  text-align: center;
+  margin-top: 20px;
+  animation: fadeInUp 1s ease-in-out;
+}
+
+.anime-intro h1 {
+  font-size: 2.5em;
+  color: #e43f5a;
+  animation: glow 1.5s infinite alternate;
+}
+
+.anime-intro p {
+  font-size: 1.2em;
+  color: #a5e1ad;
+  animation: fadeInUp 2s ease-in-out;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-15px);
+  }
+  60% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #e43f5a, 0 0 20px #e43f5a;
+  }
+  to {
+    text-shadow: 0 0 20px #e43f5a, 0 0 30px #e43f5a;
+  }
+}

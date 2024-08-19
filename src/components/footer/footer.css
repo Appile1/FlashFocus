@@ -1,0 +1,39 @@
+.footer {
+  margin-top: auto;
+  font-family: "Roboto", sans-serif; /* Anime-themed font could be used here */
+}
+
+footer {
+  background-color: #1b1b2f; /* Dark background for anime theme */
+  padding: 20px; /* Increased padding for better spacing */
+  text-align: center;
+  color: #ffffff; /* White text color for contrast */
+  border-top: 2px solid #e43f5a; /* Highlight border color */
+}
+
+/* Add animations */
+@keyframes pulse {
+  0% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+
+footer {
+  animation: pulse 3s ease-in-out infinite; /* Subtle pulse effect */
+}
+
+a {
+  color: #e43f5a; /* Accent color for links */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #d32f2f; /* Darker shade on hover */
+}

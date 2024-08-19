@@ -1,0 +1,54 @@
+.pantry-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.2
+  ); /* Clearer background with fogged mirror effect */
+  color: #000000; /* Black text color for high contrast */
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  margin: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Slightly stronger shadow for the container */
+}
+
+.item-info {
+  padding: 15px; /* Adjust padding to fit the smaller text */
+}
+
+.item-info h2 {
+  font-size: 1.2em; /* Smaller text size */
+  margin-bottom: 8px;
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5); /* Subtle white shadow for text */
+  color: #000000; /* Black text color */
+}
+
+.item-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px; /* Add space between text and buttons */
+}
+
+.item-buttons .btn {
+  padding: 8px 15px; /* Smaller button size */
+  font-size: 0.9em; /* Smaller font size in buttons */
+  background-color: #28a745;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.item-buttons .btn-remove {
+  background-color: #dc3545;
+}
+
+.item-buttons .btn + .btn-remove {
+  margin-left: 10px; /* Space between buttons */
+}

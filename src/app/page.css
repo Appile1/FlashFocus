@@ -1,0 +1,307 @@
+/* page.css */
+
+/* Ensure the chat container fits well within the animated background */
+.chat-container {
+  position: relative;
+  z-index: 1; /* Ensure the chat box appears above the background animation */
+  background: rgba(
+    255,
+    255,
+    255,
+    0.9
+  ); /* Slightly transparent white for better readability */
+  border-radius: 12px; /* Rounded corners for a modern look */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Subtle shadow for better visibility */
+  padding: 24px;
+  width: 100%;
+  max-width: 600px; /* Increase max-width for a larger chat box */
+  height: 500px; /* Fixed height to ensure larger chat area */
+  margin: auto; /* Center the chat box horizontally */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Style the message area to fit within the chat box */
+.message-area {
+  flex: 1;
+  overflow-y: auto; /* Enable vertical scrolling when messages exceed the height */
+  margin-bottom: 16px;
+  padding-right: 16px; /* Add space for scrollbar */
+}
+
+/* Style individual messages */
+.message {
+  background: rgba(
+    0,
+    0,
+    0,
+    0.1
+  ); /* Slightly transparent background for messages */
+  border-radius: 10px; /* Rounded corners for messages */
+  padding: 12px;
+  margin-bottom: 12px;
+  max-width: 80%; /* Limit message width */
+  word-wrap: break-word; /* Wrap long words to avoid overflow */
+  color: #333; /* Dark text color for readability */
+}
+
+/* Style when no messages are present */
+.no-messages {
+  text-align: center;
+  color: rgba(0, 0, 0, 0.7);
+  font-style: italic;
+}
+
+/* Style the input form */
+.input-form {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Space between input and button */
+}
+
+/* Style the message input */
+.message-input {
+  flex: 1; /* Take up remaining space */
+  padding: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.2); /* Subtle border to match the background */
+  border-radius: 8px;
+  background: rgba(
+    255,
+    255,
+    255,
+    0.9
+  ); /* Slightly transparent white for input field */
+  color: #333; /* Dark text color for readability */
+  outline: none;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2); /* Subtle inner shadow for depth */
+}
+
+/* Style the send button */
+.send-button {
+  background: #1a73e8; /* Primary blue color */
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 0.9rem; /* Adjust font size for better fit */
+}
+
+.send-button:hover {
+  background: #0059c1; /* Darker blue on hover */
+}
+
+.send-button:active {
+  transform: scale(0.98); /* Slightly shrink on click */
+}
+.chat-container {
+  flex: 1;
+  width: 100%;
+  max-width: 800px; /* Optional: Limit the width */ /* Make sure the chat background contrasts well */
+  padding: 20px;
+  border-radius: 8px;
+  overflow-y: auto; /* Ensure the chat area is scrollable */
+}
+
+.message-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.message {
+  margin-bottom: 8px;
+}
+
+.no-messages {
+  text-align: center;
+  color: #888;
+}
+
+.input-form {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+.message-input {
+  margin-bottom: 8px;
+}
+
+.send-button {
+  align-self: flex-end;
+}
+/* General chat container styling remains the same */
+.chat-container {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  padding: 24px;
+  width: 100%;
+  max-width: 600px;
+  height: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.message-area {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 16px;
+  /* padding-right: 16px; */
+}
+
+.message {
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 12px;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+/* Specific styles for user messages */
+.user-message {
+  background: #e0f7fa;
+  color: #00695c;
+  align-self: flex-end; /* Align to the right */
+  text-align: right;
+}
+
+/* Specific styles for AI messages */
+.ai-message {
+  background: #fce4ec;
+  color: #880e4f;
+  align-self: flex-start; /* Align to the left */
+  text-align: left;
+}
+
+.no-messages {
+  text-align: center;
+  color: rgba(0, 0, 0, 0.7);
+  font-style: italic;
+}
+
+.input-form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.message-input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  outline: none;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+/* Add keyframes for sliding animation */
+@keyframes slideInRight {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* User message styles */
+.user-message {
+  background: #e0f7fa;
+  color: #00695c;
+  align-self: flex-end; /* Align to the right */
+  text-align: right;
+  animation: slideInRight 0.5s ease-out forwards; /* Add the animation */
+}
+
+/* AI message styles remain the same */
+.ai-message {
+  background: #fce4ec;
+  color: #880e4f;
+  align-self: flex-start; /* Align to the left */
+  text-align: left;
+}
+
+/* General chat container styling remains the same */
+.chat-container {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  padding: 24px;
+  width: 100%;
+  max-width: 600px;
+  height: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.message-area {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 16px;
+  padding-right: 16px;
+}
+
+.message {
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 12px;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+.no-messages {
+  text-align: center;
+  color: rgba(0, 0, 0, 0.7);
+  font-style: italic;
+}
+
+.input-form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.message-input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  outline: none;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+.user-message {
+  background: #e0f7fa; /* Light blue background for user messages */
+  color: #00695c; /* Dark green text color */
+  align-self: flex-end; /* Align the message to the right */
+  text-align: right; /* Text aligned to the right within the message box */
+  padding: 12px; /* Adjust padding if necessary */
+  margin: 4px 0; /* Ensure there's no margin on the right */
+  border-radius: 10px; /* Rounded corners */
+  max-width: calc(100% - 16px); /* Make sure the message doesn't overflow */
+  word-wrap: break-word; /* Wrap text to avoid overflow */
+}
+.message-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px; /* Adjust padding */
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Ensure messages align to the right */
+}

@@ -1,0 +1,15 @@
+#email {
+  color: white;
+}
+#password {
+  color: white;
+}
+#email::placeholder,
+#password::placeholder {
+  color: rgb(155, 145, 145);
+}
+.link {
+  color: whitesmoke;
+  margin-top: 5px;
+  font-size: 1.5em;
+}
