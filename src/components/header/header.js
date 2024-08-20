@@ -8,6 +8,7 @@ import { auth } from "../../app/firebase.js"; // Import Firebase auth
 
 import { AppBar, Toolbar, Typography, Button, Container } from "@mui/material";
 import AnimeIcon from "@mui/icons-material/EmojiEmotions"; // Example anime icon
+import { SignedIn, SignIn, UserButton } from "@clerk/nextjs";
 
 export default function Header() {
   const { user } = useContext(AuthContext);
@@ -62,26 +63,9 @@ export default function Header() {
               Otaku Sensei
             </Typography>
           </Link>
-          <Button
-            color="inherit"
-            onClick={handleAuthAction}
-            sx={{
-              backgroundColor: "#e43f5a",
-              color: "white",
-              "&:hover": {
-                backgroundColor: "#d32f2f",
-                transform: "scale(1.1)",
-                animation: "pulse 1s infinite",
-              },
-              fontSize: "1.2rem",
-              padding: "10px 20px",
-              transition: "transform 0.3s ease, background-color 0.3s ease",
-              borderRadius: "8px",
-              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-            }}
-          >
-            {user ? "Logout" : "Sign In"}
-          </Button>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
         </Toolbar>
       </Container>
     </AppBar>

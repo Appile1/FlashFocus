@@ -1,32 +1,18 @@
 "use client";
 import { useState, useContext } from "react";
-import { Button, Typography, Paper, Box, TextField } from "@mui/material";
-import { keyframes } from "@emotion/react";
+import { TextField, Button, Container, Typography, Box } from "@mui/material";
+import Flashcard from "@/components/Flashcards/Flashcard";
 import { AuthContext } from "../components/authContext.js";
 import "./page.css";
 
-const bounce = keyframes`
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-30px);
-  }
-  60% {
-    transform: translateY(-15px);
-  }
-`;
-
 export default function ChatArea() {
-  const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const { user } = useContext(AuthContext);
+  const [flashcards, setFlashcards] = useState([]);
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
-
-  const systemPrompt = `"Create 10 flashcards based on the following text, focusing on the most important concepts, definitions, and questions. Each flashcard should be formatted as an object in a JSON array with the following properties:
+  const systemPrompt = ` Create 10 flashcards based on the following text, focusing on the most important concepts, definitions, and questions. Each flashcard should be formatted as an object in a JSON array with the following properties:
 
 id: A unique identifier for the card (e.g., card1, card2, etc.).
 cardFront: A concise, clear question, term, or concept. This should be something that prompts the learner to recall key information.
@@ -38,16 +24,10 @@ Ensure questions are direct and encourage active recall.
 Provide concise yet comprehensive answers or explanations on the back.
 Include examples or additional context if it helps clarify the concept.
 Avoid overly complex or ambiguous wording; aim for clarity and simplicity.
-Please generate the flashcards in the JSON array format with no additional text." `;
-
+Please generate the flashcards in the JSON array format with no additional text.`;
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (inputValue.trim()) {
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { role: "user", text: `You: ${inputValue}`, id: Date.now() },
-      ]);
-
       try {
         const response = await fetch("/api", {
           method: "POST",
@@ -66,77 +46,27 @@ Please generate the flashcards in the JSON array format with no additional text.
         });
 
         const data = await response.json();
-
-        setMessages((prevMessages) => [
-          ...prevMessages,
-
-          { role: "ai", text: `AI: ${data.message}`, id: Date.now() },
-        ]);
+        const parsedData = JSON.parse(data.message);
+        setFlashcards(parsedData);
       } catch (error) {
         console.error("Error:", error);
+        // Optionally handle the error state
       }
 
       setInputValue(""); // Clear input field after submission
     }
   };
 
-  if (!user) {
-    return (
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          minHeight: "60vh",
-          p: 3,
-          animation: `${bounce} 2s infinite`,
-        }}
-      >
-        <Paper
-          sx={{
-            padding: 3,
-            textAlign: "center",
-            borderRadius: 2,
-            boxShadow: 3,
-            maxWidth: 400,
-            width: "100%",
-          }}
-        >
-          <Typography variant="h6" gutterBottom>
-            You need to log in to access the chat.
-          </Typography>
-          <Button
-            variant="contained"
-            color="primary"
-            href="/login"
-            sx={{ mt: 2 }}
-          >
-            Log in
-          </Button>
-        </Paper>
-      </Box>
-    );
-  }
-
   return (
-    <div className="chat-container">
-      <div className="message-area">
-        {messages.length > 0 ? (
-          messages.map((msg) => (
-            <div
-              key={msg.id}
-              className={`message ${
-                msg.role === "user" ? "user-message" : "ai-message"
-              }`}
-            >
-              {msg.text}
-            </div>
-          ))
-        ) : (
-          <div className="no-messages">No messages yet.</div>
-        )}
-      </div>
+    <Container maxWidth="md">
+      <Box textAlign="center" mb={4}>
+        <Typography variant="h4" gutterBottom>
+          Generate Flashcards
+        </Typography>
+        <Typography variant="body1" paragraph>
+          Enter text to generate flashcards with key concepts and definitions.
+        </Typography>
+      </Box>
       <form onSubmit={handleSubmit} className="input-form">
         <TextField
           type="text"
@@ -148,7 +78,25 @@ Please generate the flashcards in the JSON array format with no additional text.
           fullWidth
           sx={{ mb: 2 }}
         />
+        <Button type="submit" variant="contained" color="primary" fullWidth>
+          Generate Flashcards
+        </Button>
       </form>
-    </div>
+      <Box mt={4} className="flashcard-container">
+        {flashcards.length > 0 ? (
+          flashcards.map((card, index) => (
+            <Flashcard
+              key={index}
+              cardFront={card.cardFront}
+              cardBack={card.cardBack}
+            />
+          ))
+        ) : (
+          <Typography variant="body1" textAlign="center">
+            No flashcards available. Please enter some text to generate them.
+          </Typography>
+        )}
+      </Box>
+    </Container>
   );
 }

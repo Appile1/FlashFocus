@@ -11,10 +11,13 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
-}
-
-body {
-  flex: 1;
+  font-family: "Roboto", sans-serif; /* Global font */
+  background: linear-gradient(
+    135deg,
+    #1b1b2f,
+    #162447
+  ); /* Background gradient */
+  color: #fff; /* Global text color */
 }
 
 /* Wrapper to handle page layout */
@@ -28,10 +31,13 @@ body {
 .main-content {
   flex: 1;
   position: relative;
-  overflow: hidden; /* Hide overflow to contain animations */
+  overflow: hidden;
+  padding: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column; /* Ensure vertical centering */
+  text-align: center;
 }
 
 /* Background Animation */
@@ -41,17 +47,32 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1; /* Place it behind the chat content */
-  background: linear-gradient(
-    135deg,
-    #1b1b2f,
-    #162447
-  ); /* Gradient background */
-  animation: animateBackground 15s linear infinite; /* Background animation */
-  overflow: hidden; /* Ensure content doesn’t overflow */
+  z-index: -1;
+  background: linear-gradient(135deg, #1b1b2f, #162447);
+  animation: animateBackground 12s ease-in-out infinite alternate;
 }
 
-/* Gradient background animation */
+/* Particle Animation */
+.particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  width: 5px;
+  height: 5px;
+  animation: particleAnimation 5s infinite ease-in-out;
+}
+
 @keyframes animateBackground {
   0% {
     background-position: 0% 0%;
@@ -61,57 +82,7 @@ body {
   }
 }
 
-/* Stars animation */
-.stars {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none; /* Ensure it doesn’t interfere with user interaction */
-  background: url("../../public/animation/code\ geais1.gif"); /* Stars image or pattern */
-  background-repeat: no-repeat;
-  background-size: cover;
-  opacity: 0.5; /* Slightly transparent for a subtle effect */
-  animation: twinklingStars 5s infinite alternate; /* Stars twinkling effect */
-}
-
-/* Stars twinkling effect */
-@keyframes twinklingStars {
-  0% {
-    opacity: 0.4;
-  }
-  100% {
-    opacity: 0.8;
-  }
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes bounce {
-  0%,
-  20%,
-  50%,
-  80%,
-  100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-15px);
-  }
-  60% {
-    transform: translateY(-7px);
-  }
-}
-
+/* Global Animations */
 @keyframes pulse {
   0% {
     transform: scale(1.1);
@@ -125,72 +96,4 @@ body {
     transform: scale(1.1);
     opacity: 1;
   }
-}
-/* Main content area */
-.main-content {
-  position: relative;
-  overflow: hidden;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Intro text styling with typing animation */
-.intro-text {
-  text-align: center;
-  color: #fff;
-  background: rgba(0, 0, 0, 0.7); /* Semi-transparent background for contrast */
-  padding: 20px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  width: 100%; /* Full width */
-  max-width: 800px; /* Optional: Limit the width */
-  position: relative;
-  overflow: hidden; /* Ensure content doesn’t overflow */
-}
-
-.intro-text h2 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
-
-.intro-text p {
-  font-size: 1.2rem;
-  margin: 0;
-  white-space: nowrap; /* Prevent wrapping */
-  overflow: hidden; /* Hide overflow for animation */
-  border-right: 4px solid #fff; /* Cursor effect */
-  animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite;
-}
-
-/* Typing effect animation */
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
-
-/* Cursor blinking animation */
-@keyframes blink-caret {
-  from,
-  to {
-    border-color: transparent;
-  }
-  50% {
-    border-color: #fff;
-  }
-}
-
-/* Chat container styling */
-.chat-container {
-  flex: 1;
-  width: 100%;
-  max-width: 800px; /* Optional: Limit the width */ /* Make sure the chat background contrasts well */
-  padding: 20px;
-  border-radius: 8px;
-  overflow-y: auto; /* Ensure the chat area is scrollable */
 }
