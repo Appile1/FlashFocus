@@ -1,9 +1,11 @@
-.intro-container {
+/* page.css */
+
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
-  background-color: #1b1b2f;
+  padding: 40px;
+  background-color: #1a1a2e; /* Darker shade for a modern look */
   color: white;
   animation: fadeIn 2s ease-in;
 }
@@ -11,47 +13,52 @@
 .header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
-  padding: 10px 20px;
-  background-color: #162447;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  padding: 15px 30px;
+  background-color: #162447; /* Deep blue for contrast */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* Softer, wider shadow */
+  border-bottom: 2px solid #e43f5a; /* Highlight color for emphasis */
 }
 
 .logo img {
-  width: 100px;
+  width: 130px; /* Slightly larger logo */
   cursor: pointer;
   animation: bounce 2s infinite;
 }
 
 .buttons .btn.auth-btn {
   margin: 0 10px;
-  padding: 10px 20px;
+  padding: 12px 24px;
   background-color: #e43f5a;
   border: none;
   color: white;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  border-radius: 10px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  font-size: 1rem; /* Improved readability */
 }
 
 .buttons .btn.auth-btn:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
+  background-color: #d32f2f;
 }
 
 .anime-intro {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 40px;
   animation: fadeInUp 1s ease-in-out;
 }
 
 .anime-intro h1 {
-  font-size: 2.5em;
-  color: #e43f5a;
+  font-size: 3em; /* Larger header text */
+  color: #ff6f61; /* Coral color for vibrancy */
   animation: glow 1.5s infinite alternate;
 }
 
 .anime-intro p {
-  font-size: 1.2em;
-  color: #a5e1ad;
+  font-size: 1.4em; /* Slightly larger text */
+  color: #c2c2f0; /* Soft lavender for contrast */
   animation: fadeInUp 2s ease-in-out;
 }
 
@@ -94,9 +101,9 @@
 
 @keyframes glow {
   from {
-    text-shadow: 0 0 10px #e43f5a, 0 0 20px #e43f5a;
+    text-shadow: 0 0 15px #ff6f61, 0 0 30px #ff6f61;
   }
   to {
-    text-shadow: 0 0 20px #e43f5a, 0 0 30px #e43f5a;
+    text-shadow: 0 0 25px #ff6f61, 0 0 40px #ff6f61;
   }
 }

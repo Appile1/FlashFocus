@@ -1,102 +1,68 @@
 "use client";
-import { useState, useContext } from "react";
-import { TextField, Button, Container, Typography, Box } from "@mui/material";
-import Flashcard from "@/components/Flashcards/Flashcard";
-import { AuthContext } from "../components/authContext.js";
-import "./page.css";
+import React from "react";
+import { useRouter } from "next/navigation"; // Import useRouter from next/router
+import "./page.css"; // Import the CSS file
 
-export default function ChatArea() {
-  const [inputValue, setInputValue] = useState("");
-  const [flashcards, setFlashcards] = useState([]);
+// Typing animation component
+const TypingAnimation = ({ text, speed = 100 }) => {
+  const [displayedText, setDisplayedText] = React.useState("");
 
-  const handleInputChange = (e) => {
-    setInputValue(e.target.value);
-  };
-  const systemPrompt = ` Create 10 flashcards based on the following text, focusing on the most important concepts, definitions, and questions. Each flashcard should be formatted as an object in a JSON array with the following properties:
-
-id: A unique identifier for the card (e.g., card1, card2, etc.).
-cardFront: A concise, clear question, term, or concept. This should be something that prompts the learner to recall key information.
-cardBack: A detailed explanation, definition, or answer that directly addresses the content on the front of the card. Ensure the explanation is clear, accurate, and provides any necessary context or examples.
-Guidelines for creating the best flashcards:
-
-Focus on key concepts and terms that are essential for understanding the topic.
-Ensure questions are direct and encourage active recall.
-Provide concise yet comprehensive answers or explanations on the back.
-Include examples or additional context if it helps clarify the concept.
-Avoid overly complex or ambiguous wording; aim for clarity and simplicity.
-Please generate the flashcards in the JSON array format with no additional text.`;
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (inputValue.trim()) {
-      try {
-        const response = await fetch("/api", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            messages: [
-              {
-                role: "system",
-                content: systemPrompt,
-              },
-              { role: "user", content: inputValue },
-            ],
-          }),
-        });
-
-        const data = await response.json();
-        const parsedData = JSON.parse(data.message);
-        setFlashcards(parsedData);
-      } catch (error) {
-        console.error("Error:", error);
-        // Optionally handle the error state
+  React.useEffect(() => {
+    let index = 0;
+    const interval = setInterval(() => {
+      setDisplayedText((prev) => prev + text[index]);
+      index += 1;
+      if (index >= text.length) {
+        clearInterval(interval);
       }
+    }, speed);
+    return () => clearInterval(interval);
+  }, [text, speed]);
 
-      setInputValue(""); // Clear input field after submission
-    }
+  return <p className="typing-animation">{displayedText}</p>;
+};
+
+const Page = () => {
+  const router = useRouter(); // Initialize useRouter
+  const handleGetStarted = () => {
+    router.push("/generate"); // Redirect to /generate page
   };
 
   return (
-    <Container maxWidth="md">
-      <Box textAlign="center" mb={4}>
-        <Typography variant="h4" gutterBottom>
-          Generate Flashcards
-        </Typography>
-        <Typography variant="body1" paragraph>
-          Enter text to generate flashcards with key concepts and definitions.
-        </Typography>
-      </Box>
-      <form onSubmit={handleSubmit} className="input-form">
-        <TextField
-          type="text"
-          value={inputValue}
-          onChange={handleInputChange}
-          placeholder="Type your message..."
-          className="message-input"
-          variant="outlined"
-          fullWidth
-          sx={{ mb: 2 }}
+    <div className="container">
+      <div className="hero">
+        <h1>FlashFocus</h1>
+        <TypingAnimation
+          text="AI-generated flashcards based on your text. Authentication with Clerk. Powered by Llama 3.1."
+          speed={50}
         />
-        <Button type="submit" variant="contained" color="primary" fullWidth>
-          Generate Flashcards
-        </Button>
-      </form>
-      <Box mt={4} className="flashcard-container">
-        {flashcards.length > 0 ? (
-          flashcards.map((card, index) => (
-            <Flashcard
-              key={index}
-              cardFront={card.cardFront}
-              cardBack={card.cardBack}
-            />
-          ))
-        ) : (
-          <Typography variant="body1" textAlign="center">
-            No flashcards available. Please enter some text to generate them.
-          </Typography>
-        )}
-      </Box>
-    </Container>
+        <button className="get-started-button" onClick={handleGetStarted}>
+          Get Started
+        </button>
+      </div>
+      <div className="cards">
+        <div className="card free">
+          <h2>Free Version</h2>
+          <ul>
+            <li>Generate basic flashcards from your text</li>
+            <li>Access to fundamental AI features</li>
+            <li>Simple user authentication with Clerk</li>
+          </ul>
+          <button className="price-button free">Free</button>
+        </div>
+        <div className="card pro">
+          <h2>Pro Version</h2>
+          <ul>
+            <li>Generate unlimited flashcards with advanced AI</li>
+            <li>Enhanced AI capabilities for more accurate flashcards</li>
+            <li>Priority support and faster updates</li>
+            <li>Customizable flashcard templates and features</li>
+          </ul>
+          <button className="price-button pro">$5</button>
+        </div>
+      </div>
+    </div>
   );
-}
+};
+
+export default Page;

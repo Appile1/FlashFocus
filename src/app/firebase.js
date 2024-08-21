@@ -17,16 +17,14 @@ import {
 } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCwgh7xoL0RPq7AUdg84GVwhIPe51KH2J0",
-  authDomain: "otakusensei-ff20b.firebaseapp.com",
-  projectId: "otakusensei-ff20b",
-  storageBucket: "otakusensei-ff20b.appspot.com",
-  messagingSenderId: "804042645235",
-  appId: "1:804042645235:web:ff93a7f51c8f76f5ea2186",
+  apiKey: "AIzaSyD17pRjhYy8zfTT9W7FXYMq0UTMORuVnEo",
+  authDomain: "focusflash-38363.firebaseapp.com",
+  projectId: "focusflash-38363",
+  storageBucket: "focusflash-38363.appspot.com",
+  messagingSenderId: "429189061472",
+  appId: "1:429189061472:web:7e55be850072b8ac1b9c05",
 };
 
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+
 export const db = getFirestore(app);
-export const storage = getStorage(app);
-export const GoggleProvider = new GoogleAuthProvider();

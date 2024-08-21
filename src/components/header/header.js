@@ -7,8 +7,9 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../app/firebase.js"; // Import Firebase auth
 
 import { AppBar, Toolbar, Typography, Button, Container } from "@mui/material";
-import AnimeIcon from "@mui/icons-material/EmojiEmotions"; // Example anime icon
-import { SignedIn, SignIn, UserButton } from "@clerk/nextjs";
+import FlashFocusIcon from "@mui/icons-material/Star"; // Example icon for the app
+
+import { SignedIn, UserButton, SignedOut } from "@clerk/nextjs";
 
 export default function Header() {
   const { user } = useContext(AuthContext);
@@ -31,42 +32,115 @@ export default function Header() {
     <AppBar
       position="static"
       sx={{
-        backgroundColor: "#162447",
-        boxShadow: "0 4px 10px rgba(0, 0, 0, 0.5)",
-        padding: "15px 0",
-        height: "80px", // Increased height
-        animation: "fadeIn 2s ease-in",
+        backgroundColor: "#1a1a2e", // Dark background for contrast
+        boxShadow: "0 6px 12px rgba(0, 0, 0, 0.3)", // Subtle shadow
+        padding: "0 20px",
+        height: "80px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        position: "relative",
+        borderBottom: "2px solid #e43f5a", // Highlight color
       }}
     >
-      <Container maxWidth="lg">
-        <Toolbar disableGutters sx={{ justifyContent: "space-between" }}>
-          <Link href="/" style={{ textDecoration: "none", color: "inherit" }}>
-            <Typography
-              variant="h4" // Increased font size
-              component="div"
+      <Container
+        maxWidth="lg"
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <Link href="/" style={{ textDecoration: "none", color: "inherit" }}>
+          <Typography
+            variant="h4"
+            component="div"
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              color: "#e43f5a", // Highlight color
+              fontWeight: "bold",
+              cursor: "pointer",
+              fontSize: "2.5rem",
+              transition: "color 0.3s, transform 0.3s",
+              "&:hover": {
+                color: "#f7a6b4", // Light color on hover
+                transform: "scale(1.05)",
+              },
+            }}
+          >
+            <FlashFocusIcon
               sx={{
-                display: "flex",
-                alignItems: "center",
-                cursor: "pointer",
-                color: "#e43f5a",
-                animation: "bounce 2s infinite",
+                mr: 1,
+                fontSize: "3rem",
               }}
-            >
-              <AnimeIcon
-                sx={{
-                  mr: 1,
-                  fontSize: "3rem",
-                  animation: "bounce 2s infinite",
-                }}
-              />{" "}
-              {/* Larger icon */}
-              Otaku Sensei
-            </Typography>
-          </Link>
+            />
+            Flash Focus
+          </Typography>
+        </Link>
+
+        <Button
+          sx={{
+            backgroundColor: "#e43f5a",
+            color: "white",
+            padding: "12px 24px",
+            borderRadius: "8px",
+            fontSize: "1rem",
+            fontWeight: "bold",
+            "&:hover": {
+              backgroundColor: "#d32f2f",
+              transform: "scale(1.05)",
+            },
+            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3)",
+          }}
+          onClick={() => router.push("/generate")}
+        >
+          Generate Flashcard
+        </Button>
+
+        <div
+          style={{
+            position: "absolute",
+            right: "20px",
+            top: "50%",
+            transform: "translateY(-50%)",
+          }}
+        >
           <SignedIn>
-            <UserButton />
+            <UserButton
+              sx={{
+                backgroundColor: "#1a1a2e", // Match header background
+                color: "#e43f5a", // Highlight color
+                borderRadius: "8px",
+                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3)",
+                "&:hover": {
+                  backgroundColor: "#162447", // Darker on hover
+                },
+              }}
+            />
           </SignedIn>
-        </Toolbar>
+
+          <SignedOut>
+            <Button
+              sx={{
+                backgroundColor: "#e43f5a",
+                color: "white",
+                padding: "12px 24px",
+                borderRadius: "8px",
+                fontSize: "1rem",
+                fontWeight: "bold",
+                "&:hover": {
+                  backgroundColor: "#d32f2f",
+                  transform: "scale(1.05)",
+                },
+                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3)",
+              }}
+              onClick={() => router.push("/signup")}
+            >
+              Sign Up
+            </Button>
+          </SignedOut>
+        </div>
       </Container>
     </AppBar>
   );
