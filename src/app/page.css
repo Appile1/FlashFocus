@@ -43,13 +43,13 @@
   background-color: #005bb5;
 }
 
-.cards {
+.cards1 {
   display: flex;
   gap: 2rem;
   margin-top: 2rem;
 }
 
-.card {
+.card1 {
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -59,16 +59,16 @@
   color: black;
 }
 
-.card h2 {
+.card1 h2 {
   margin-top: 0;
 }
 
-.card ul {
+.card1 ul {
   list-style-type: disc;
   padding-left: 1.5rem;
 }
 
-.card li {
+.card1 li {
   margin-bottom: 0.5rem;
 }
 

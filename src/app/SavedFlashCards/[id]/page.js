@@ -1,53 +1,46 @@
+"use client";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../utils/firebase";
-import Flashcard from "../../components/Flashcards/Flashcard";
-import { Container, Typography, Box } from "@mui/material";
+import { db } from "../../firebase.js";
+import Flashcard from "../../../components/Flashcards/flashcard.js";
+import { Container, Typography, Box, Grid, Paper } from "@mui/material";
 import { useUser } from "@clerk/nextjs";
-import { useSearchParams } from "next/navigation";
 
-const FlashcardDetail = () => {
-  const [flashcard, setFlashcard] = useState(null);
+const FlashcardDetail = ({ params }) => {
+  const [flashcards, setFlashcards] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { user } = useUser();
-  const searchParams = useSearchParams();
-  const id = searchParams.get("id");
+  const id = params.id;
 
   useEffect(() => {
-    const fetchFlashcard = async () => {
+    const fetchFlashcards = async () => {
       setLoading(true);
       setError(null);
       try {
         if (user && id) {
-          // Collection named with user ID
-          const userCollectionRef = doc(db, user.id, "flashcards"); // Assuming the flashcards are in a document within this collection
-          const docSnap = await getDoc(userCollectionRef);
+          // Reference to the specific flashcard document in user's collection
+          const flashcardsDocRef = doc(db, user.id, id);
+
+          const docSnap = await getDoc(flashcardsDocRef);
 
           if (docSnap.exists()) {
-            // Assuming flashcards is an array in the document
+            // Assuming the document contains an array of flashcards
             const flashcards = docSnap.data().flashcards || [];
-            const selectedFlashcard = flashcards.find((card) => card.id === id);
-
-            if (selectedFlashcard) {
-              setFlashcard(selectedFlashcard);
-            } else {
-              setError("Flashcard not found.");
-            }
+            setFlashcards(flashcards);
           } else {
             setError("No flashcards document found.");
           }
         }
       } catch (error) {
-        setError("Failed to load flashcard.");
-        console.error("Error fetching flashcard:", error);
+        setError("Failed to load flashcards.");
+        console.error("Error fetching flashcards:", error);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchFlashcard();
+    fetchFlashcards();
   }, [id, user]);
 
   return (
@@ -62,13 +55,21 @@ const FlashcardDetail = () => {
           <Typography variant="body1" color="error">
             {error}
           </Typography>
-        ) : flashcard ? (
-          <Flashcard
-            cardFront={flashcard.cardFront}
-            cardBack={flashcard.cardBack}
-          />
+        ) : flashcards.length > 0 ? (
+          <Grid container spacing={3}>
+            {flashcards.map((flashcard, index) => (
+              <Grid item xs={12} sm={6} md={4} key={index}>
+                <Paper elevation={3} sx={{ p: 2, borderRadius: 2 }}>
+                  <Flashcard
+                    cardFront={flashcard.cardFront}
+                    cardBack={flashcard.cardBack}
+                  />
+                </Paper>
+              </Grid>
+            ))}
+          </Grid>
         ) : (
-          <Typography variant="body1">No details available.</Typography>
+          <Typography variant="body1">No flashcards available.</Typography>
         )}
       </Box>
     </Container>

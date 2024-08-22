@@ -8,7 +8,7 @@ import {
   Box,
   Modal,
 } from "@mui/material";
-import Flashcard from "@/components/Flashcards/Flashcard";
+import Flashcards from "@/components/Flashcards/Flashcard.js";
 
 import HamsterWheel from "@/components/Loading/Loading.js"; // Import HamsterWheel
 import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
@@ -172,12 +172,13 @@ export default function ChatArea() {
         ) : flashcards.length > 0 ? (
           <>
             {flashcards.map((card, index) => (
-              <Flashcard
+              <Flashcards
                 key={index}
                 cardFront={card.cardFront}
                 cardBack={card.cardBack}
               />
             ))}
+
             <Button
               variant="contained"
               color="secondary"

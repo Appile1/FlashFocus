@@ -93,9 +93,9 @@ export default function Header() {
             },
             boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3)",
           }}
-          onClick={() => router.push("/generate")}
+          onClick={() => router.push("/SavedFlashCards")}
         >
-          Generate Flashcard
+          Saved Flash Cards
         </Button>
 
         <div

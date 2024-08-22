@@ -1,25 +1,23 @@
-"use client";
 import React, { useState } from "react";
-import "./flashcard.css";
-
-const Flashcard = ({ cardFront, cardBack }) => {
-  const [flipped, setFlipped] = useState(false);
+import "../Flashcards/flashcard.css";
+const FlashCards = ({ cardFront, cardBack }) => {
+  const [isFlipped, setIsFlipped] = useState(false);
 
   const handleFlip = () => {
-    setFlipped(!flipped);
+    setIsFlipped(!isFlipped);
   };
 
   return (
     <div
-      className={`flashcard ${flipped ? "flipped" : ""}`}
+      className={`flip-card ${isFlipped ? "flipped" : ""}`}
       onClick={handleFlip}
     >
-      <div className="flashcard-inner">
-        <div className="flashcard-front">
-          <p className="card-text">{cardFront}</p>
+      <div className="flip-card-inner">
+        <div className="flip-card-front">
+          <p>{cardFront}</p>
         </div>
-        <div className="flashcard-back">
-          <p className="card-text">{cardBack}</p>
+        <div className="flip-card-back">
+          <p>{cardBack}</p>
         </div>
       </div>
     </div>

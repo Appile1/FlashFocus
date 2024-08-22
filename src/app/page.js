@@ -40,8 +40,8 @@ const Page = () => {
           Get Started
         </button>
       </div>
-      <div className="cards">
-        <div className="card free">
+      <div className="cards1">
+        <div className="card1 free">
           <h2>Free Version</h2>
           <ul>
             <li>Generate basic flashcards from your text</li>
@@ -50,7 +50,7 @@ const Page = () => {
           </ul>
           <button className="price-button free">Free</button>
         </div>
-        <div className="card pro">
+        <div className="card1 pro">
           <h2>Pro Version</h2>
           <ul>
             <li>Generate unlimited flashcards with advanced AI</li>
