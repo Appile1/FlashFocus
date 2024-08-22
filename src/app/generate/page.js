@@ -1,5 +1,5 @@
 "use client";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import {
   TextField,
   Button,
@@ -9,7 +9,6 @@ import {
   Modal,
 } from "@mui/material";
 import Flashcards from "@/components/Flashcards/Flashcard.js";
-
 import HamsterWheel from "@/components/Loading/Loading.js"; // Import HamsterWheel
 import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
 import { useUser } from "@clerk/nextjs";
@@ -19,8 +18,8 @@ import "./generate.css";
 export default function ChatArea() {
   const [inputValue, setInputValue] = useState("");
   const [flashcards, setFlashcards] = useState([]);
-  const [loading, setLoading] = useState(false); // State for loading
-  const [error, setError] = useState(null); // State for error
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const [flashcardName, setFlashcardName] = useState("");
   const [saveError, setSaveError] = useState("");
@@ -31,12 +30,12 @@ export default function ChatArea() {
   };
 
   const systemPrompt = `Create 10 flashcards based on the following text, focusing on the most important concepts, definitions, and questions. Each flashcard should be formatted as an object in a JSON array with the following properties:
-  
+
   id: A unique identifier for the card (e.g., card1, card2, etc.).
   cardFront: A concise, clear question, term, or concept. This should be something that prompts the learner to recall key information.
   cardBack: A detailed explanation, definition, or answer that directly addresses the content on the front of the card. Ensure the explanation is clear, accurate, and provides any necessary context or examples.
   Guidelines for creating the best flashcards:
-  
+
   Focus on key concepts and terms that are essential for understanding the topic.
   Ensure questions are direct and encourage active recall.
   Provide concise yet comprehensive answers or explanations on the back.
@@ -47,8 +46,8 @@ export default function ChatArea() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (inputValue.trim()) {
-      setLoading(true); // Set loading to true when starting request
-      setError(null); // Clear any previous errors
+      setLoading(true);
+      setError(null);
 
       try {
         const response = await fetch("/api", {
@@ -78,10 +77,10 @@ export default function ChatArea() {
         setError("Failed to generate flashcards. Please try again.");
         console.error("Error:", error);
       } finally {
-        setLoading(false); // Set loading to false once request is complete
+        setLoading(false);
       }
 
-      setInputValue(""); // Clear input field after submission
+      setInputValue("");
     }
   };
 
@@ -103,10 +102,10 @@ export default function ChatArea() {
             flashcards,
             createdAt: new Date(),
           });
-          handleCloseModal(); // Close modal after saving
-          setFlashcards([]); // Clear flashcards after saving
-          setFlashcardName(""); // Clear flashcard name input
-          setSaveError(""); // Clear save error message
+          handleCloseModal();
+          setFlashcards([]);
+          setFlashcardName("");
+          setSaveError("");
         }
       } catch (error) {
         console.error("Error saving flashcards:", error);
@@ -117,7 +116,7 @@ export default function ChatArea() {
   const handleOpenModal = () => setOpenModal(true);
   const handleCloseModal = () => {
     setOpenModal(false);
-    setSaveError(""); // Clear save error message on close
+    setSaveError("");
   };
 
   return (
@@ -146,22 +145,14 @@ export default function ChatArea() {
           variant="contained"
           color="primary"
           fullWidth
-          disabled={loading} // Disable button when loading
+          disabled={loading}
         >
           Generate Flashcards
         </Button>
       </form>
 
-      <Box mt={4} className="flashcard-container">
+      <Box className="flashcard-container">
         {loading ? (
-          // <Box
-          //   display="flex"
-          //   justifyContent="center"
-          //   alignItems="center"
-          //   sx={{ height: "100%", width: "100%", minHeight: "200px" }} // Adjust height if necessary
-          // >
-          //   <HamsterWheel />
-          // </Box>
           <HamsterWheel />
         ) : error ? (
           <Box textAlign="center">
@@ -178,13 +169,11 @@ export default function ChatArea() {
                 cardBack={card.cardBack}
               />
             ))}
-
             <Button
               variant="contained"
               color="secondary"
-              fullWidth
+              className="save-button"
               onClick={handleOpenModal}
-              sx={{ mt: 4 }}
             >
               Save Flashcards
             </Button>
@@ -202,20 +191,13 @@ export default function ChatArea() {
         aria-labelledby="save-flashcards-modal"
         aria-describedby="modal-to-save-flashcards"
       >
-        <Box
-          sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: 300,
-            bgcolor: "background.paper",
-            border: "2px solid #000",
-            boxShadow: 24,
-            p: 4,
-          }}
-        >
-          <Typography id="save-flashcards-modal" variant="h6" component="h2">
+        <Box className="modal-content">
+          <Typography
+            id="save-flashcards-modal"
+            variant="h6"
+            component="h2"
+            className="modal-title"
+          >
             Save Flashcards
           </Typography>
           <TextField

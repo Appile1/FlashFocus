@@ -165,9 +165,11 @@
   background-color: #e64a19; /* Darker color on hover */
 }
 .flashcard-container {
-  display: flex;
-
+  margin-top: 100px;
+  display: grid;
+  grid-template-columns: repeat(5, 400px);
   align-items: center;
+  gap: 2em;
 }
 
 .message-input {
@@ -184,4 +186,66 @@
 
 .modal-title {
   margin-bottom: 1rem;
+}
+/* Flashcard Container Styling */
+.flashcard-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Save Button Styling */
+.save-button {
+  background-color: #ff5722;
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  margin: 20px auto;
+  display: block;
+  transition: background-color 0.3s ease;
+  font-size: 1rem;
+}
+
+.save-button:hover {
+  background-color: #e64a19;
+}
+
+/* Modal Styling */
+.modal-content {
+  padding: 2rem;
+  max-width: 400px;
+  margin: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-title {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* General Input Form Styling */
+.input-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 2rem;
+}
+
+/* Message Input Styling */
+.message-input {
+  padding: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff; /* Input text color set to white */
+  outline: none;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.message-input::placeholder {
+  color: #ccc;
 }

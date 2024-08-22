@@ -29,18 +29,44 @@
   justify-content: center;
   align-items: center;
   font-size: 1.5em;
+  color: white; /* Set text color to white */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow effect */
 }
 
 .flip-card-front {
   background: linear-gradient(135deg, #1b1b2f, #162447);
-  color: white;
 }
-.flip-card-front p,
-.flip-card-back p {
-  color: black;
-}
+
 .flip-card-back {
   background: linear-gradient(135deg, #162447, #1b1b2f);
-  color: white;
   transform: rotateY(180deg);
+}
+.flip-card :hover {
+  cursor: pointer;
+}
+.flashcard {
+  width: 100%; /* Full width of grid cell */
+  height: 120px; /* Fixed height */
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.flashcard:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+.text1 {
+  font-size: 0.8em;
+  width: 200px;
+}
+.text2 {
+  font-size: 0.73em;
+  width: 287px;
 }

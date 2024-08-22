@@ -5,7 +5,7 @@ import { db } from "../../firebase.js";
 import Flashcard from "../../../components/Flashcards/flashcard.js";
 import { Container, Typography, Box, Grid, Paper } from "@mui/material";
 import { useUser } from "@clerk/nextjs";
-
+import "./dynamic.css";
 const FlashcardDetail = ({ params }) => {
   const [flashcards, setFlashcards] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -56,15 +56,14 @@ const FlashcardDetail = ({ params }) => {
             {error}
           </Typography>
         ) : flashcards.length > 0 ? (
-          <Grid container spacing={3}>
+          <Grid container spacing={3} className="gap">
             {flashcards.map((flashcard, index) => (
               <Grid item xs={12} sm={6} md={4} key={index}>
-                <Paper elevation={3} sx={{ p: 2, borderRadius: 2 }}>
-                  <Flashcard
-                    cardFront={flashcard.cardFront}
-                    cardBack={flashcard.cardBack}
-                  />
-                </Paper>
+                {/* Add margin bottom for spacing */}
+                <Flashcard
+                  cardFront={flashcard.cardFront}
+                  cardBack={flashcard.cardBack}
+                />
               </Grid>
             ))}
           </Grid>

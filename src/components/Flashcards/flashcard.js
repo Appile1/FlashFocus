@@ -1,11 +1,13 @@
+"use client";
 import React, { useState } from "react";
-import "../Flashcards/flashcard.css";
-const FlashCards = ({ cardFront, cardBack }) => {
+import "./flashcard.css";
+
+export default function FlashCard({ cardFront, cardBack }) {
   const [isFlipped, setIsFlipped] = useState(false);
 
-  const handleFlip = () => {
+  function handleFlip() {
     setIsFlipped(!isFlipped);
-  };
+  }
 
   return (
     <div
@@ -14,14 +16,12 @@ const FlashCards = ({ cardFront, cardBack }) => {
     >
       <div className="flip-card-inner">
         <div className="flip-card-front">
-          <p>{cardFront}</p>
+          <p className="text1">{cardFront}</p>
         </div>
         <div className="flip-card-back">
-          <p>{cardBack}</p>
+          <p className="text2">{cardBack}</p>
         </div>
       </div>
     </div>
   );
-};
-
-export default Flashcard;
+}

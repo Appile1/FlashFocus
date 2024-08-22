@@ -17,7 +17,7 @@ const Footer = () => {
     >
       <Container className="footer">
         <Typography variant="body1">
-          &copy; {new Date().getFullYear()} Otaku Sensei
+          &copy; {new Date().getFullYear()} Foucs Flash
         </Typography>
         <Typography variant="body2">
           <Link
