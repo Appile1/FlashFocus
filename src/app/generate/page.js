@@ -8,7 +8,7 @@ import {
   Box,
   Modal,
 } from "@mui/material";
-import Flashcards from "@/components/Flashcards/Flashcard.js";
+import Flashcards from "../../components/Flashcards/flashcard.js";
 import HamsterWheel from "@/components/Loading/Loading.js"; // Import HamsterWheel
 import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
 import { useUser } from "@clerk/nextjs";
