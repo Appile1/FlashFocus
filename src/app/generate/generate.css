@@ -303,3 +303,113 @@
   color: white;
   font-weight: bold;
 }
+/* General Styling */
+.flashcard-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  gap: 20px;
+  justify-items: center;
+  margin-top: 20px;
+}
+
+/* Flashcard Styling */
+.flashcard {
+  width: 200px; /* Adjust width as needed */
+  height: 200px; /* Adjust height as needed */
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.flashcard:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Save Button Styling */
+.save-button {
+  background-color: #ff5722;
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  margin: 20px auto;
+  display: block;
+  transition: background-color 0.3s ease;
+  font-size: 1rem;
+}
+
+.save-button:hover {
+  background-color: #e64a19;
+}
+
+/* Modal Styling */
+.modal-content {
+  padding: 2rem;
+  max-width: 400px;
+  margin: auto;
+  border-radius: ;
+}
+/* General Styling */
+.flashcard-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  gap: 20px;
+  justify-items: center;
+  margin-top: 20px;
+}
+
+/* Flashcard Styling */
+.flashcard {
+  width: 200px; /* Adjust width as needed */
+  height: 200px; /* Adjust height as needed */
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.flashcard:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Save Button Styling */
+.save-button {
+  background-color: #ff5722;
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  margin: 20px auto;
+  display: block;
+  transition: background-color 0.3s ease;
+  font-size: 1rem;
+}
+
+.save-button:hover {
+  background-color: #e64a19;
+}
+
+/* Modal Styling */
+.modal-content {
+  padding: 2rem;
+  max-width: 400px;
+  margin: auto;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-title {
+  margin-bottom: 1rem;
+}

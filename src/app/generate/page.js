@@ -150,6 +150,18 @@ export default function ChatArea() {
           Generate Flashcards
         </Button>
       </form>
+      {flashcards.length > 0 && (
+        <Box textAlign="center" mb={4}>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={handleOpenModal}
+            className="save-button"
+          >
+            Save Flashcards
+          </Button>
+        </Box>
+      )}
 
       <Box
         className={`flashcard-container ${
@@ -180,20 +192,6 @@ export default function ChatArea() {
           </Typography>
         )}
       </Box>
-
-      {/* Save Button */}
-      {flashcards.length > 0 && (
-        <Box textAlign="center" mb={4}>
-          <Button
-            variant="contained"
-            color="secondary"
-            onClick={handleOpenModal}
-            className="save-button"
-          >
-            Save Flashcards
-          </Button>
-        </Box>
-      )}
 
       <Modal
         open={openModal}
