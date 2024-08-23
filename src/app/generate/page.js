@@ -151,9 +151,15 @@ export default function ChatArea() {
         </Button>
       </form>
 
-      <Box className="flashcard-container">
+      <Box
+        className={`flashcard-container ${
+          loading || flashcards.length === 0 ? "flex-mode" : "grid-mode"
+        }`}
+      >
         {loading ? (
-          <HamsterWheel />
+          <Box className="hamsterwheel-container">
+            <HamsterWheel />
+          </Box>
         ) : error ? (
           <Box textAlign="center">
             <Typography variant="body1" color="error">
@@ -161,29 +167,33 @@ export default function ChatArea() {
             </Typography>
           </Box>
         ) : flashcards.length > 0 ? (
-          <>
-            {flashcards.map((card, index) => (
-              <Flashcards
-                key={index}
-                cardFront={card.cardFront}
-                cardBack={card.cardBack}
-              />
-            ))}
-            <Button
-              variant="contained"
-              color="secondary"
-              className="save-button"
-              onClick={handleOpenModal}
-            >
-              Save Flashcards
-            </Button>
-          </>
+          flashcards.map((card, index) => (
+            <Flashcards
+              key={index}
+              cardFront={card.cardFront}
+              cardBack={card.cardBack}
+            />
+          ))
         ) : (
           <Typography variant="body1" textAlign="center">
             No flashcards available. Please enter some text to generate them.
           </Typography>
         )}
       </Box>
+
+      {/* Save Button */}
+      {flashcards.length > 0 && (
+        <Box textAlign="center" mb={4}>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={handleOpenModal}
+            className="save-button"
+          >
+            Save Flashcards
+          </Button>
+        </Box>
+      )}
 
       <Modal
         open={openModal}

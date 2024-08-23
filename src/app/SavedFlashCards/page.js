@@ -63,21 +63,23 @@ const SaveFlashCard = () => {
           Saved Flashcards
         </Typography>
       </Box>
-      {loading ? (
-        <Typography variant="body1" textAlign="center">
-          Loading...
-        </Typography>
-      ) : error ? (
-        <Typography variant="body1" color="error" textAlign="center">
-          {error}
-        </Typography>
-      ) : flashcards.length > 0 ? (
-        flashcards.map((card) => <FlashcardCard key={card.id} card={card} />)
-      ) : (
-        <Typography variant="body1" textAlign="center">
-          No flashcards available.
-        </Typography>
-      )}
+      <Box className="flashcard-grid">
+        {loading ? (
+          <Typography variant="body1" textAlign="center">
+            Loading...
+          </Typography>
+        ) : error ? (
+          <Typography variant="body1" color="error" textAlign="center">
+            {error}
+          </Typography>
+        ) : flashcards.length > 0 ? (
+          flashcards.map((card) => <FlashcardCard key={card.id} card={card} />)
+        ) : (
+          <Typography variant="body1" textAlign="center">
+            No flashcards available.
+          </Typography>
+        )}
+      </Box>
     </Container>
   );
 };

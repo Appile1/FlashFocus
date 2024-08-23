@@ -249,3 +249,57 @@
 .message-input::placeholder {
   color: #ccc;
 }
+/* Flashcard Container Styling */
+.flashcard-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  min-height: 300px; /* Adjust this value if needed */
+  margin-top: 20px;
+}
+
+/* HamsterWheel Centering */
+.hamsterwheel-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+/* Container Styling for Conditional Layout */
+.flashcard-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  min-height: 300px; /* Ensure the container takes up sufficient height */
+  margin-top: 20px;
+}
+
+.flashcard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  align-items: start;
+}
+
+/* Specific Styling for Flexbox Mode */
+.flashcard-container.flex-mode {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Specific Styling for Grid Mode */
+.flashcard-container.grid-mode {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  justify-items: center;
+}
+.save-button {
+  padding: 10px 20px;
+  background-color: #ff5722;
+  color: white;
+  font-weight: bold;
+}
